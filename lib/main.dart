@@ -21,7 +21,7 @@ class BooklyApp extends StatelessWidget {
             theme: AppTheme.darkTheme,
             debugShowCheckedModeBanner: false,
             routerConfig: AppRouter.router,
-            ),
-          );
+          ),
+    );
   }
 }
