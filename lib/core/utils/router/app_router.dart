@@ -1,4 +1,5 @@
 import 'package:bookly_app/core/utils/screens/app_screens.dart';
+import 'package:bookly_app/features/splash/presentation/pages/splash_page.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
@@ -6,7 +7,7 @@ class AppRouter {
     routes: [
       GoRoute(
         path: AppScreens.splashScreen,
-        builder: (context, state) => const SplashScreen(),
+        builder: (context, state) => const SplashPage(),
       ),
     ],
   );
