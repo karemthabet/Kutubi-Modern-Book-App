@@ -1,6 +1,7 @@
 import 'package:bookly_app/core/utils/assets/app_assets.dart';
 import 'package:bookly_app/core/utils/screens/app_screens.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class SplashPageBody extends StatefulWidget {
@@ -37,20 +38,19 @@ class _SplashPageBodyState extends State<SplashPageBody>
         builder: (context, child) {
           return SlideTransition(
             position: _slideAnimation,
-            child: FadeTransition(
-              opacity: _fadeAnimation,
-              child: child,
-            ),
+            child: FadeTransition(opacity: _fadeAnimation, child: child),
           );
         },
-        child: Image.asset(AppAssets.logo), 
+        child: Image.asset(AppAssets.logo),
       ),
     );
   }
 
   void navigateToHome() {
     Future.delayed(const Duration(seconds: 2), () {
-      GoRouter.of(context).pushReplacement(AppScreens.homeScreen);
+      if (mounted) {
+        GoRouter.of(context).pushReplacement(AppScreens.homeScreen);
+      }
     });
   }
 
@@ -65,8 +65,8 @@ class _SplashPageBodyState extends State<SplashPageBody>
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
 
     _fadeAnimation = Tween<double>(
-      begin: 0,
-      end: 1,
+      begin: 0.r,
+      end: 1.r,
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeIn));
 
     _controller.forward();

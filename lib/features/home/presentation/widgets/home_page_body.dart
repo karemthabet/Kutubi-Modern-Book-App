@@ -1,10 +1,28 @@
+import 'package:bookly_app/core/utils/styles/app_styles.dart';
+import 'package:bookly_app/features/home/presentation/widgets/best_Seller_list_view_item.dart';
+import 'package:bookly_app/features/home/presentation/widgets/custom_app_bar.dart';
+import 'package:bookly_app/features/home/presentation/widgets/custom_list_view_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomePageBody extends StatelessWidget {
   const HomePageBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  const Column();
+    return Padding(
+      padding:REdgeInsets.symmetric(vertical: 20,horizontal: 8) ,
+      child: Column(
+        crossAxisAlignment:CrossAxisAlignment.start ,
+        children: [
+        const  CustomAppBar(),
+        const  CustomListViewItem(),
+          SizedBox(height: 20.h),
+          Text("Best Seller", style: AppStyles.textStyle18),
+          BestSellerListViewItem(),
+
+        ],
+      ),
+    );
   }
 }
