@@ -1,4 +1,4 @@
 class AppScreens {
   static const String splashScreen = '/';
-  static const String homeSceren = 'home';
+  static const String homeScreen = '/home';
 }
