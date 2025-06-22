@@ -1,3 +1,4 @@
+import 'package:bookly_app/core/utils/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,13 +16,10 @@ class BooklyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder:
-          (context, child) => MaterialApp(
+          (context, child) => MaterialApp.router(
             debugShowCheckedModeBanner: false,
-            home: Scaffold(appBar: AppBar(
-              title: const Text("Bookly App",style: TextStyle(color: Colors.amber),),
-              centerTitle: true,
-            )),
-          ),
-    );
+            routerConfig: AppRouter.router,
+            ),
+          );
   }
 }
