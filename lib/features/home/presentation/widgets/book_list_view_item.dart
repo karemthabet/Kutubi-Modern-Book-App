@@ -1,28 +1,29 @@
 import 'package:bookly_app/core/utils/assets/app_assets.dart';
 import 'package:bookly_app/core/utils/colors/app_colors.dart';
+import 'package:bookly_app/core/utils/screens/app_screens.dart';
 import 'package:bookly_app/core/utils/styles/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
-class BestSellerListViewItem extends StatelessWidget {
-  const BestSellerListViewItem({super.key});
+class BookListViewItem extends StatelessWidget {
+  const BookListViewItem({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: REdgeInsets.symmetric(vertical: 10),
+    return GestureDetector(
+      onTap: () => GoRouter.of(context).push(AppScreens.bookScreenDetails),
       child: Row(
         children: [
           Container(
-            padding: REdgeInsets.symmetric(horizontal: 10),
             height: 120.h,
             width: 100.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16.r),
               color: Colors.amberAccent,
-              image: DecorationImage(
-                image: const AssetImage(AppAssets.testImage),
+              image: const DecorationImage(
+                image: AssetImage(AppAssets.testImage),
                 fit: BoxFit.fill,
               ),
             ),
@@ -55,8 +56,8 @@ class BestSellerListViewItem extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: AppStyles.textStyle18,
                     ),
-                    Spacer(),
-                    Icon(
+                    const Spacer(),
+                    const Icon(
                       FontAwesomeIcons.solidStar,
                       color: AppColors.yellowColor,
                     ),
@@ -71,7 +72,7 @@ class BestSellerListViewItem extends StatelessWidget {
                         color: AppColors.greyColor,
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                   ],
                 ),
               ],
