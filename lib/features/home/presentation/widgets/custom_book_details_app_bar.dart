@@ -8,13 +8,15 @@ class CustomBookDetailsAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
       leading: IconButton(
-        onPressed: () {},
-        icon: Icon(Icons.close, color: AppColors.whiteColor),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        icon: const Icon(Icons.close, color: AppColors.whiteColor),
       ),
       actions: [
         IconButton(
           onPressed: () {},
-          icon: Icon(
+          icon: const Icon(
             Icons.add_shopping_cart_outlined,
             color: AppColors.whiteColor,
           ),

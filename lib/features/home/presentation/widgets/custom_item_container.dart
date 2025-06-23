@@ -14,8 +14,8 @@ class CustomItemContainer extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.amberAccent,
         borderRadius: BorderRadius.circular(16.r),
-        image: DecorationImage(
-          image: const AssetImage(AppAssets.testImage),
+        image: const DecorationImage(
+          image: AssetImage(AppAssets.testImage),
           fit: BoxFit.fill,
         ),
       ),

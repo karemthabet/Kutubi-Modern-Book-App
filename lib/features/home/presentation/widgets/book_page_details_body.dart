@@ -15,74 +15,79 @@ class BookPageDetailsBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: REdgeInsets.symmetric(horizontal: 33),
-      child: Column(
-        children: [
-          CustomBookDetailsAppBar(),
-          SizedBox(height: 320.h, width: 200.w, child: CustomItemContainer()),
-          SizedBox(height: 30.h),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            const CustomBookDetailsAppBar(),
+            SizedBox(height: 320.h, width: 200.w, child: const CustomItemContainer()),
+            SizedBox(height: 30.h),
 
-          Text("The Jungle Book", style: AppStyles.textStyle18),
+            Text("The Jungle Book", style: AppStyles.textStyle18),
 
-          Text(
-            "Rudyard Kipling",
-            style: AppStyles.textStyle18.copyWith(
-              color: AppColors.greyColor,
-              fontSize: 15.sp,
+            Text(
+              "Rudyard Kipling",
+              style: AppStyles.textStyle18.copyWith(
+                color: AppColors.greyColor,
+                fontSize: 15.sp,
+              ),
             ),
-          ),
-          SizedBox(height: 12.h),
+            SizedBox(height: 12.h),
 
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                FontAwesomeIcons.solidStar,
-                color: AppColors.yellowColor,
-                size: 15,
-              ),
-              SizedBox(width: 9.w),
-              Text("4.9", style: AppStyles.textStyle18),
-              SizedBox(width: 13.w),
-              Text(
-                "(2025)",
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: AppStyles.textStyle18.copyWith(
-                  color: AppColors.greyColor,
-                  fontSize: 15,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(FontAwesomeIcons.solidStar, color: AppColors.yellowColor, size: 15),
+                SizedBox(width: 9.w),
+                Text("4.9", style: AppStyles.textStyle18),
+                SizedBox(width: 13.w),
+                Text(
+                  "(2025)",
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppStyles.textStyle18.copyWith(
+                    color: AppColors.greyColor,
+                    fontSize: 15,
+                  ),
                 ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Expanded(
-                child: CustomButton(
-                  backgroundColor: AppColors.whiteColor,
-                  forgroundColor: AppColors.primaryColor,
-                  text: "19.99",
+              ],
+            ),
+
+            SizedBox(height: 20.h),
+
+            Row(
+              children: [
+                const Expanded(
+                  child: CustomButton(
+                    backgroundColor: AppColors.whiteColor,
+                    forgroundColor: AppColors.primaryColor,
+                    text: "19.99",
+                  ),
                 ),
-              ),
-              Expanded(
-                child: CustomButton(
-                  backgroundColor: AppColors.buttonColor,
-                  forgroundColor: AppColors.whiteColor,
-                  text: "Free preview",
+                SizedBox(width: 12.w),
+                const Expanded(
+                  child: CustomButton(
+                    backgroundColor: AppColors.buttonColor,
+                    forgroundColor: AppColors.whiteColor,
+                    text: "Free preview",
+                  ),
                 ),
-              ),
-            ],
-          ),
-          Align(
-            alignment:Alignment.centerLeft,
-            child: Text(
-              
-              "You can also like", style: AppStyles.textStyle18),
-          ),
-         Spacer(),
-         CutomFeaturedListView(),
-         Spacer(),
-        ],
+              ],
+            ),
+
+            SizedBox(height: 30.h),
+
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text("You can also like", style: AppStyles.textStyle18),
+            ),
+
+            SizedBox(height: 10.h),
+
+            const CutomFeaturedListView(),
+
+            SizedBox(height: 30.h),
+          ],
+        ),
       ),
     );
   }

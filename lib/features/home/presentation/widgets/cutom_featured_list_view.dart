@@ -7,12 +7,12 @@ class CutomFeaturedListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SizedBox(
+    return SizedBox(
       height: 120.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: 10,
-      itemBuilder: (context, index) => const CustomItemContainer(),
+        itemBuilder: (context, index) => const CustomItemContainer(),
       ),
     );
   }
