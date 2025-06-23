@@ -1,13 +1,12 @@
 import 'package:bookly_app/core/utils/styles/app_styles.dart';
-import 'package:bookly_app/features/home/presentation/widgets/best_Seller_list_view_item.dart';
 import 'package:bookly_app/features/home/presentation/widgets/best_seller_list_view.dart';
 import 'package:bookly_app/features/home/presentation/widgets/custom_app_bar.dart';
 import 'package:bookly_app/features/home/presentation/widgets/custom_list_view_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class HomePageBody extends StatelessWidget {
-  const HomePageBody({super.key});
+class BookPageBody extends StatelessWidget {
+  const BookPageBody({super.key});
 
   @override
   Widget build(BuildContext context) {

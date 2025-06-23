@@ -49,7 +49,7 @@ class _SplashPageBodyState extends State<SplashPageBody>
   void navigateToHome() {
     Future.delayed(const Duration(seconds: 2), () {
       if (mounted) {
-        GoRouter.of(context).pushReplacement(AppScreens.homeScreen);
+        GoRouter.of(context).pushReplacement(AppScreens.bookScreen);
       }
     });
   }
