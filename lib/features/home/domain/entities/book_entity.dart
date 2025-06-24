@@ -1,5 +1,5 @@
 class BookEntity {
-  final String? bookId;
+  final String bookId;
   final String? image;
 
   final String? title;
@@ -8,11 +8,11 @@ class BookEntity {
   final num? price;
 
   BookEntity({
-    this.title,
-    this.authorName,
-    this.rating,
-    this.price,
-    this.image,
-    this.bookId,
+    required this.title,
+    required this.authorName,
+    required this.rating,
+    required this.price,
+    required this.image,
+    required this.bookId,
   });
 }
