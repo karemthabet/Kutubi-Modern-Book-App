@@ -28,7 +28,7 @@ class CustomItemContainer extends StatelessWidget {
             ),
         errorWidget:
             (context, url, error) =>
-                Image.asset(AppAssets.imageNotFound, fit: BoxFit.cover),
+                Image.asset(AppAssets.imageNotFound, fit: BoxFit.fill),
       ),
     );
   }

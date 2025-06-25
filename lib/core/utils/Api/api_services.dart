@@ -1,10 +1,11 @@
 
+import 'package:bookly_app/core/utils/constants/app_constants.dart';
 import 'package:dio/dio.dart';
 
 class ApiService {
   final Dio _dio;
 
-  final baseUrl = "https://www.googleapis.com/books/v1/";
+  final baseUrl = AppConstants.baseUrl;
 
   ApiService(this._dio);
 
