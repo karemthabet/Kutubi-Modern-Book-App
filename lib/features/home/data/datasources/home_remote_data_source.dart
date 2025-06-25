@@ -1,4 +1,6 @@
+import 'package:bookly_app/core/functions/save_local_data.dart';
 import 'package:bookly_app/core/utils/Api/api_services.dart';
+import 'package:bookly_app/core/utils/constants/app_constants.dart';
 import 'package:bookly_app/features/home/data/models/book/book.dart';
 import 'package:bookly_app/features/home/domain/entities/book_entity.dart';
 
@@ -17,6 +19,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
       endPoint: "'volumes?Filtering=free-ebooks&q=programming",
     );
     List<BookEntity> books = getBooksList(data);
+    saveLocalData(books, AppConstants.featuredBox);
 
     return books;
   }
@@ -27,6 +30,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
       endPoint: "volumes?Filtering=free-ebooks&Sorting=newest&q=programming",
     );
     List<BookEntity> newsBooks = getBooksList(newsData);
+    saveLocalData(newsBooks, AppConstants.newsBox);
     return newsBooks;
   }
 
