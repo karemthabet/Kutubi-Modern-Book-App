@@ -1,6 +1,6 @@
 import 'package:bookly_app/core/utils/styles/app_styles.dart';
 import 'package:bookly_app/features/home/presentation/widgets/custom_app_bar.dart';
-import 'package:bookly_app/features/home/presentation/widgets/custom_list_view_item.dart';
+import 'package:bookly_app/features/home/presentation/widgets/custom_list_view_bloc_builder.dart';
 import 'package:bookly_app/features/home/presentation/widgets/book_list_view_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,7 +19,7 @@ class BookPageBody extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const CustomAppBar(),
-                const CustomListViewItem(),
+                const CustomListViewItemBlocBuilder(),
                 SizedBox(height: 20.h),
                 Text("Best Seller", style: AppStyles.textStyle18),
                 SizedBox(height: 10.h),
@@ -41,3 +41,5 @@ class BookPageBody extends StatelessWidget {
     );
   }
 }
+
+

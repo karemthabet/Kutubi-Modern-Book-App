@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bookly_app/core/functions/save_local_data.dart';
 import 'package:bookly_app/core/utils/Api/api_services.dart';
 import 'package:bookly_app/core/utils/constants/app_constants.dart';
@@ -12,14 +14,15 @@ abstract class HomeRemoteDataSource {
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   final ApiService apiService;
 
-  HomeRemoteDataSourceImpl(this.apiService);
+  HomeRemoteDataSourceImpl({required this.apiService});
   @override
   Future<List<BookEntity>> fetchFeaturedBooks() async {
     var data = await apiService.get(
-      endPoint: "'volumes?Filtering=free-ebooks&q=programming",
+      endPoint: "volumes?Filtering=free-ebooks&q=programming",
     );
     List<BookEntity> books = getBooksList(data);
     saveLocalData(books, AppConstants.featuredBox);
+    log("Feating books from Remote Data Source   ${books.length}");
 
     return books;
   }

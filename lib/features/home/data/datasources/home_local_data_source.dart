@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bookly_app/core/utils/constants/app_constants.dart';
 import 'package:bookly_app/features/home/domain/entities/book_entity.dart';
 import 'package:hive/hive.dart';
@@ -11,6 +13,7 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
   @override
   List<BookEntity> fetchFeaturedBooks() {
     var box = Hive.box<BookEntity>(AppConstants.featuredBox);
+    log("Feating books from Local Data Source   ${box.values.length}");
     return box.values.toList();
   }
 

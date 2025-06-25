@@ -22,7 +22,9 @@ class BookPageDetailsBody extends StatelessWidget {
             SizedBox(
               height: 320.h,
               width: 200.w,
-              child: const CustomItemContainer(),
+              child: const CustomItemContainer(
+                image: "",
+              ),
             ),
             SizedBox(height: 30.h),
 

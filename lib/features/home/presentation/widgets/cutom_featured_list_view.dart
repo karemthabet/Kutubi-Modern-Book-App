@@ -12,7 +12,9 @@ class CutomFeaturedListView extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: 10,
-        itemBuilder: (context, index) => const CustomItemContainer(),
+        itemBuilder: (context, index) => const CustomItemContainer(
+          image: "",
+        ),
       ),
     );
   }

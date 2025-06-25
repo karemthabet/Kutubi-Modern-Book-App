@@ -12,45 +12,45 @@ class ServerFailure extends Failure {
     switch (e.type) {
       case DioExceptionType.connectionTimeout:
         return ServerFailure(
-            errMessage: 'The connection to server time out, please try later');
+            errMessage: 'The connection to server timed out, please try later');
       case DioExceptionType.sendTimeout:
         return ServerFailure(
-            errMessage: 'The connection to server time out, please try later');
-
+            errMessage: 'The connection to server timed out, please try later');
       case DioExceptionType.receiveTimeout:
         return ServerFailure(
-            errMessage:
-                'The receive method from server time out, please try later');
-
+            errMessage: 'Receiving data from server timed out, please try later');
       case DioExceptionType.badCertificate:
-        return ServerFailure(errMessage: 'Bad Certificate');
-
+        return ServerFailure(errMessage: 'Bad certificate from server');
       case DioExceptionType.badResponse:
-        return ServerFailure.fromBadResponse(e.response!);
-
+        if (e.response != null) {
+          return ServerFailure.fromBadResponse(e.response!);
+        } else {
+          return ServerFailure(errMessage: 'Unexpected server error');
+        }
       case DioExceptionType.cancel:
-        return ServerFailure(
-            errMessage: 'The request canceld, please try another');
-
+        return ServerFailure(errMessage: 'Request was cancelled');
       case DioExceptionType.connectionError:
         return ServerFailure(errMessage: 'No internet connection');
-
       case DioExceptionType.unknown:
-        return ServerFailure(
-            errMessage: 'Opps, There is a error please try again');
+      default:
+        return ServerFailure(errMessage: 'Unexpected error, please try again');
     }
   }
 
   factory ServerFailure.fromBadResponse(Response response) {
-    if ([400, 401, 403].contains(response.statusCode)) {
-      return ServerFailure(errMessage: response.data['error']);
-    } else if (response.statusCode == 500) {
+    final statusCode = response.statusCode ?? 0;
+
+    if ([400, 401, 403].contains(statusCode)) {
+      final errorMsg = response.data['error'] ?? 'Unauthorized request';
+      return ServerFailure(errMessage: errorMsg);
+    } else if (statusCode == 404) {
+      return ServerFailure(errMessage: 'The requested item was not found.');
+    } else if (statusCode == 500) {
       return ServerFailure(
-          errMessage: 'The is a problem in server, please try later');
-    } else if (response.statusCode == 404) {
-      return ServerFailure(errMessage: 'The request not found');
+          errMessage: 'Server error. Please try again later.');
     } else {
-      return ServerFailure(errMessage: 'There is a error please try again');
+      return ServerFailure(
+          errMessage: 'Something went wrong. Please try again.');
     }
   }
 }
