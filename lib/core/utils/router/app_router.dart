@@ -12,7 +12,7 @@ class AppRouter {
         path: AppScreens.splashScreen,
         builder: (context, state) => const SplashPage(),
       ),
-       GoRoute(
+      GoRoute(
         path: AppScreens.searchScreen,
         builder: (context, state) => const SearchPage(),
       ),
@@ -20,7 +20,7 @@ class AppRouter {
         path: AppScreens.bookScreen,
         builder: (context, state) => const BookPage(),
       ),
-       GoRoute(
+      GoRoute(
         path: AppScreens.bookScreenDetails,
         builder: (context, state) => const BookPageDetails(),
       ),

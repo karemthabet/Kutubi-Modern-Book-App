@@ -19,7 +19,11 @@ class BookPageDetailsBody extends StatelessWidget {
         child: Column(
           children: [
             const CustomBookDetailsAppBar(),
-            SizedBox(height: 320.h, width: 200.w, child: const CustomItemContainer()),
+            SizedBox(
+              height: 320.h,
+              width: 200.w,
+              child: const CustomItemContainer(),
+            ),
             SizedBox(height: 30.h),
 
             Text("The Jungle Book", style: AppStyles.textStyle18),
@@ -36,7 +40,11 @@ class BookPageDetailsBody extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(FontAwesomeIcons.solidStar, color: AppColors.yellowColor, size: 15),
+                const Icon(
+                  FontAwesomeIcons.solidStar,
+                  color: AppColors.yellowColor,
+                  size: 15,
+                ),
                 SizedBox(width: 9.w),
                 Text("4.9", style: AppStyles.textStyle18),
                 SizedBox(width: 13.w),
