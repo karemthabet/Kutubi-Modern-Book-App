@@ -20,7 +20,7 @@ class CustomListViewItem extends StatelessWidget {
           return CustomItemContainer(
             image:
                 bookEntity[index].image ??
-                AppAssets.imageNotFound,
+                AppAssets.imageNotFound, // ✅ أكسس على الصورة
           );
         },
       ),

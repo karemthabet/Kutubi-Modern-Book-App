@@ -13,13 +13,16 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
   @override
   List<BookEntity> fetchFeaturedBooks() {
     var box = Hive.box<BookEntity>(AppConstants.featuredBox);
-    log("Feating books from Local Data Source   ${box.values.length}");
-    return box.values.toList();
+    var books = box.values.toList();
+    log('📦 Local Featured Books Count: ${books.length}');
+    return books;
   }
 
   @override
   List<BookEntity> fetchNewsBooks() {
     var newsBox = Hive.box<BookEntity>(AppConstants.newsBox);
-    return newsBox.values.toList();
+    var books = newsBox.values.toList();
+    log('📦 Local News Books Count: ${books.length}');
+    return books;
   }
 }

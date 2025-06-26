@@ -15,24 +15,27 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   final ApiService apiService;
 
   HomeRemoteDataSourceImpl({required this.apiService});
+
   @override
   Future<List<BookEntity>> fetchFeaturedBooks() async {
+    log('🌍 Fetching featured books from API...');
     var data = await apiService.get(
       endPoint: "volumes?Filtering=free-ebooks&q=programming",
     );
     List<BookEntity> books = getBooksList(data);
+    log('✅ Remote Featured Books Count: ${books.length}');
     saveLocalData(books, AppConstants.featuredBox);
-    log("Feating books from Remote Data Source   ${books.length}");
-
     return books;
   }
 
   @override
   Future<List<BookEntity>> fetchNewsBooks() async {
+    log('🌍 Fetching news books from API...');
     var newsData = await apiService.get(
       endPoint: "volumes?Filtering=free-ebooks&Sorting=newest&q=programming",
     );
     List<BookEntity> newsBooks = getBooksList(newsData);
+    log('✅ Remote News Books Count: ${newsBooks.length}');
     saveLocalData(newsBooks, AppConstants.newsBox);
     return newsBooks;
   }
