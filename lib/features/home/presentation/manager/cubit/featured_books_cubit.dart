@@ -6,15 +6,40 @@ part 'featured_books_state.dart';
 
 class FeaturedBooksCubit extends Cubit<FeaturedBooksState> {
   FeaturedBooksCubit({required this.fetchFeaturedBooksUsecase})
-    : super(FeaturedBooksInitial());
+      : super(FeaturedBooksInitial());
+
   final FetchFeaturedBooksUsecase fetchFeaturedBooksUsecase;
 
-  Future<void> getFeaturedBooks() async {
-    emit(FeaturedBooksLoading());
-    var result = await fetchFeaturedBooksUsecase.call();
+  List<BookEntity> books = []; // ✅ نخزن الكتب المحمّلة
+  bool hasMoreData = true;     // ✅ نعرف لو فيه صفحات تانية
+
+  Future<void> getFeaturedBooks({int pageNumber = 0}) async {
+    if (pageNumber == 0) {
+      emit(FeaturedBooksLoading()); // ✅ أول تحميل
+    } else {
+      emit(FeaturedBooksPaginationLoading(oldBooks: books)); // ✅ تحميل صفحة جديدة
+    }
+
+    final result = await fetchFeaturedBooksUsecase.call(pageNumber);
+
     result.fold(
-      (failure) => emit(FeaturedBooksFailure(errMessage: failure.errMessage)),
-      (books) => emit(FeaturedBooksSuccess(books: books)),
+      (failure) {
+        // ✅ لو فشلنا في تحميل الصفحة
+        if (pageNumber == 0) {
+          emit(FeaturedBooksFailure(errMessage: failure.errMessage));
+        } else {
+          emit(FeaturedBooksPaginationFailure(
+            oldBooks: books,
+            errMessage: failure.errMessage,
+          ));
+        }
+      },
+      (newBooks) {
+        if (newBooks.length < 10) hasMoreData = false; // ✅ آخر صفحة
+
+        books.addAll(newBooks); // ✅ نضيف الجديد على القديم
+        emit(FeaturedBooksSuccess(books: books, hasMoreData: hasMoreData));
+      },
     );
   }
 }
