@@ -3,6 +3,7 @@ import 'package:bookly_app/core/utils/colors/app_colors.dart';
 import 'package:bookly_app/core/utils/styles/app_styles.dart';
 import 'package:bookly_app/features/home/presentation/manager/cubit/featured_books_cubit.dart';
 import 'package:bookly_app/features/home/presentation/widgets/custom_list_view_item.dart';
+import 'package:bookly_app/features/home/presentation/widgets/custom_list_view_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,15 +15,12 @@ class CustomListViewItemBlocBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FeaturedBooksCubit, FeaturedBooksState>(
       builder: (context, state) {
-        // ✅ في حالة نجاح عادي
         if (state is FeaturedBooksSuccess) {
           return CustomListViewItem(
             bookEntity: state.books,
             hasMoreData: state.hasMoreData,
           );
-        }
-        // ✅ في حالة تحميل صفحة جديدة
-        else if (state is FeaturedBooksPaginationLoading) {
+        } else if (state is FeaturedBooksPaginationLoading) {
           return Stack(
             children: [
               CustomListViewItem(bookEntity: state.oldBooks, hasMoreData: true),
@@ -53,9 +51,7 @@ class CustomListViewItemBlocBuilder extends StatelessWidget {
               ),
             ],
           );
-        }
-        // ✅ في حالة فشل أول تحميل
-        else if (state is FeaturedBooksFailure) {
+        } else if (state is FeaturedBooksFailure) {
           log(state.errMessage);
           return Center(
             child: Text(
@@ -67,12 +63,8 @@ class CustomListViewItemBlocBuilder extends StatelessWidget {
               ),
             ),
           );
-        }
-        // ✅ أول مرة لسه بيحمل
-        else {
-          return const Center(
-            child: CircularProgressIndicator(color: AppColors.whiteColor),
-          );
+        } else {
+          return const CustomListViewItemShimmer();
         }
       },
     );

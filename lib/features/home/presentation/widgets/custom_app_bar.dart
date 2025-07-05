@@ -25,9 +25,14 @@ class CustomAppBar extends StatelessWidget {
           ElevatedButton(
             onPressed: () async {
               log("🔍 Button Pressed");
-              final box = Hive.box<BookEntity>(AppConstants.featuredBox);
-              await box.clear();
-              log("✅ Cache cleared!");
+              final box1 = Hive.box<BookEntity>(AppConstants.featuredBox);
+              final box2 = Hive.box<BookEntity>(AppConstants.newsBox);
+              log(
+                "✅ Cache cleared! Featured Books Count: ${box1.values.length} ",
+              );
+              log("✅ Cache cleared! News Books Count: ${box2.values.length} ");
+              await box1.clear();
+              await box2.clear();
             },
 
             child: const Text("Clear Cache"),

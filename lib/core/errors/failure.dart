@@ -51,7 +51,6 @@ class ServerFailure extends Failure {
         );
 
       case DioExceptionType.unknown:
-      default:
         return ServerFailure(
           errMessage: 'An unexpected error occurred. Please try again.',
         );

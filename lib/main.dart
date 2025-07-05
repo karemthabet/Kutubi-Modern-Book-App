@@ -48,7 +48,7 @@ class BooklyApp extends StatelessWidget {
                       fetchNewsBooksUsecase: FetchNewsBooksUsecase(
                         homeRepo: getit.get<HomeRepoImpl>(),
                       ),
-                    ),
+                    )..getNewsBooks(),
               ),
             ],
             child: MaterialApp.router(

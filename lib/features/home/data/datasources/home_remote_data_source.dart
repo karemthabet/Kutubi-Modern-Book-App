@@ -33,7 +33,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   Future<List<BookEntity>> fetchNewsBooks() async {
     log('🌍 Fetching news books from API...');
     var newsData = await apiService.get(
-      endPoint: "volumes?Filtering=free-ebooks&Sorting=newest&q=programming",
+      endPoint: "volumes?Filtering=free-ebooks&Sorting=newest&q=sports",
     );
     List<BookEntity> newsBooks = getBooksList(newsData);
     log('✅ Remote News Books Count: ${newsBooks.length}');
