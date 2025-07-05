@@ -21,15 +21,11 @@ class CustomListViewItemBlocBuilder extends StatelessWidget {
             hasMoreData: state.hasMoreData,
           );
         }
-
         // ✅ في حالة تحميل صفحة جديدة
         else if (state is FeaturedBooksPaginationLoading) {
           return Stack(
             children: [
-              CustomListViewItem(
-                bookEntity: state.oldBooks,
-                hasMoreData: true,
-              ),
+              CustomListViewItem(bookEntity: state.oldBooks, hasMoreData: true),
               Positioned(
                 bottom: 0,
                 right: 16,
@@ -45,28 +41,19 @@ class CustomListViewItemBlocBuilder extends StatelessWidget {
             ],
           );
         }
-
         // ✅ في حالة فشل أثناء Pagination
         else if (state is FeaturedBooksPaginationFailure) {
           return Stack(
             children: [
-              CustomListViewItem(
-                bookEntity: state.oldBooks,
-                hasMoreData: true,
-              ),
+              CustomListViewItem(bookEntity: state.oldBooks, hasMoreData: true),
               Positioned(
                 bottom: 0,
                 right: 16,
-                child: Icon(
-                  Icons.error_outline,
-                  color: Colors.red,
-                  size: 30.w,
-                ),
+                child: Icon(Icons.error_outline, color: Colors.red, size: 30.w),
               ),
             ],
           );
         }
-
         // ✅ في حالة فشل أول تحميل
         else if (state is FeaturedBooksFailure) {
           log(state.errMessage);
@@ -81,13 +68,10 @@ class CustomListViewItemBlocBuilder extends StatelessWidget {
             ),
           );
         }
-
         // ✅ أول مرة لسه بيحمل
         else {
           return const Center(
-            child: CircularProgressIndicator(
-              color: AppColors.whiteColor,
-            ),
+            child: CircularProgressIndicator(color: AppColors.whiteColor),
           );
         }
       },

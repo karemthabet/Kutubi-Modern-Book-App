@@ -62,6 +62,8 @@ class _CustomListViewItemState extends State<CustomListViewItem> {
     return SizedBox(
       height: 220.h,
       child: ListView.builder(
+        key: const PageStorageKey('featured-books-scroll'), // ✅ ده الجديد
+
         controller: scrollController,
         scrollDirection: Axis.horizontal,
         itemCount: widget.bookEntity.length,
