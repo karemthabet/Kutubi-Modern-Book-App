@@ -8,7 +8,7 @@ import 'package:bookly_app/features/home/domain/entities/book_entity.dart';
 
 abstract class HomeRemoteDataSource {
   Future<List<BookEntity>> fetchFeaturedBooks({int pageNumber = 0});
-  Future<List<BookEntity>> fetchNewsBooks();
+  Future<List<BookEntity>> fetchNewsBooks({int pageNumber = 0});
 }
 
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
@@ -30,10 +30,11 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   }
 
   @override
-  Future<List<BookEntity>> fetchNewsBooks() async {
+  Future<List<BookEntity>> fetchNewsBooks({int pageNumber = 0}) async {
     log('🌍 Fetching news books from API...');
     var newsData = await apiService.get(
-      endPoint: "volumes?Filtering=free-ebooks&Sorting=newest&q=sports",
+      endPoint:
+          "volumes?Filtering=free-ebooks&Sorting=newest&q=sports&startIndex=${pageNumber * 10}",
     );
     List<BookEntity> newsBooks = getBooksList(newsData);
     log('✅ Remote News Books Count: ${newsBooks.length}');

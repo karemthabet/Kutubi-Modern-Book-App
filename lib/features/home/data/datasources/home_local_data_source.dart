@@ -6,7 +6,7 @@ import 'package:hive/hive.dart';
 
 abstract class HomeLocalDataSource {
   List<BookEntity> fetchFeaturedBooks({int pageNumber = 0});
-  List<BookEntity> fetchNewsBooks();
+  List<BookEntity> fetchNewsBooks({int pageNumber = 0});
 }
 
 class HomeLocalDataSourceImpl implements HomeLocalDataSource {
@@ -23,9 +23,13 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
   }
 
   @override
-  List<BookEntity> fetchNewsBooks() {
+  List<BookEntity> fetchNewsBooks({int pageNumber = 0}) {
+    final startIndex = pageNumber * 10;
+    final endIndex = (pageNumber + 1) * 10;
     var newsBox = Hive.box<BookEntity>(AppConstants.newsBox);
-    var books = newsBox.values.toList();
+    int length = newsBox.values.length;
+    if (startIndex >= length || endIndex > length) return [];
+    var books = newsBox.values.toList().sublist(startIndex, endIndex);
     log('📦 Local News Books Count: ${books.length}');
     return books;
   }

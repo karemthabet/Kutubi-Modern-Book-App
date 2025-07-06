@@ -45,15 +45,21 @@ class HomeRepoImpl extends HomeRepo {
   }
 
   @override
-  Future<Either<Failure, List<BookEntity>>> fetchNewsBooks() async {
+  Future<Either<Failure, List<BookEntity>>> fetchNewsBooks({
+    int pageNumber = 0,
+  }) async {
     try {
-      final localBooks = homeLocalDataSource.fetchNewsBooks();
+      final localBooks = homeLocalDataSource.fetchNewsBooks(
+        pageNumber: pageNumber,
+      );
       if (localBooks.isNotEmpty) {
         log('✅ Data fetched from LOCAL (newsBooks)');
         return right(localBooks);
       }
 
-      final remoteBooks = await homeRemoteDataSource.fetchNewsBooks();
+      final remoteBooks = await homeRemoteDataSource.fetchNewsBooks(
+        pageNumber: pageNumber,
+      );
       log('🌐 Data fetched from REMOTE (newsBooks)');
       return right(remoteBooks);
     } catch (e) {
