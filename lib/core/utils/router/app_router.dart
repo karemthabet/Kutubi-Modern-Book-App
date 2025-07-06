@@ -1,4 +1,5 @@
 import 'package:bookly_app/core/utils/screens/app_screens.dart';
+import 'package:bookly_app/features/home/domain/entities/book_entity.dart';
 import 'package:bookly_app/features/home/presentation/pages/book_page.dart';
 import 'package:bookly_app/features/home/presentation/pages/book_page_details.dart';
 import 'package:bookly_app/features/search/presentation/pages/search_page.dart';
@@ -22,7 +23,10 @@ class AppRouter {
       ),
       GoRoute(
         path: AppScreens.bookScreenDetails,
-        builder: (context, state) => const BookPageDetails(),
+        builder: (context, state) {
+          final book = state.extra as BookEntity;
+          return BookPageDetails(book: book);
+        },
       ),
     ],
   );

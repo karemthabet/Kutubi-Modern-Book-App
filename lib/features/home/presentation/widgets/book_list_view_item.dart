@@ -1,6 +1,7 @@
 import 'package:bookly_app/core/utils/colors/app_colors.dart';
 import 'package:bookly_app/core/utils/screens/app_screens.dart';
 import 'package:bookly_app/core/utils/styles/app_styles.dart';
+import 'package:bookly_app/features/home/domain/entities/book_entity.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,6 +17,7 @@ class BookListViewItem extends StatelessWidget {
     required this.subText,
     required this.rating,
     required this.price,
+    required this.book,
   });
 
   final String image;
@@ -23,17 +25,17 @@ class BookListViewItem extends StatelessWidget {
   final String subText;
   final num rating;
   final num price;
+  final BookEntity book;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => GoRouter.of(context).push(AppScreens.bookScreenDetails),
+      onTap: () => GoRouter.of(context).push(AppScreens.bookScreenDetails,extra: book),
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 8.h),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ✅ صورة الغلاف
             Container(
               width: 100.w,
               height: 120.h,
@@ -61,7 +63,6 @@ class BookListViewItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // العنوان
                   Text(
                     text,
                     style: AppStyles.textStyle18.copyWith(

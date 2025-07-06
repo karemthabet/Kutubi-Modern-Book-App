@@ -29,18 +29,17 @@ class _NewsBooksSliverListWithPaginationState
   }
 
   void _onScroll() {
-    final cubit = context.read<NewsBooksCubit>();
-    if (widget.controller.position.pixels >=
-            widget.controller.position.maxScrollExtent * 0.7 &&
-        cubit.hasMoreData &&
-        !cubit.isLoading) {
-      cubit.getNewsBooks();
+    final threshold = widget.controller.position.maxScrollExtent * 0.8;
+
+    if (widget.controller.position.pixels >= threshold) {
+      context.read<NewsBooksCubit>().getNewsBooks();
     }
   }
 
   @override
   void dispose() {
     widget.controller.removeListener(_onScroll);
+    widget.controller.dispose();
     super.dispose();
   }
 
@@ -85,6 +84,7 @@ class _NewsBooksSliverListWithPaginationState
             if (index < books.length) {
               final book = books[index];
               return BookListViewItem(
+                book: book,
                 image: book.image!,
                 text: book.title,
                 subText: book.authorName!,

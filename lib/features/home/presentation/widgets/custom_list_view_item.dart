@@ -27,6 +27,7 @@ class CustomListViewItem extends StatelessWidget {
         itemCount: books.length,
         itemBuilder: (context, index) {
           return CustomItemContainer(
+            book: books[index],
             image: books[index].image ?? AppAssets.imageNotFound,
           );
         },
