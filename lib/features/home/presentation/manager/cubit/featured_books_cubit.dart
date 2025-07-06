@@ -4,42 +4,51 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'featured_books_state.dart';
 
-/// ✅ Cubit مسؤول عن تحميل وعرض الكتب المميزة (Featured Books)
+/// ✅ Cubit مسؤول عن تحميل الكتب المميزة (Featured Books) مع دعم التحميل التدريجي (pagination)
 class FeaturedBooksCubit extends Cubit<FeaturedBooksState> {
   FeaturedBooksCubit({required this.fetchFeaturedBooksUsecase})
       : super(FeaturedBooksInitial());
 
-  /// 🧠 نداء لحالة الـ usecase لجلب الكتب
+  /// نداء للـ usecase المسؤول عن تحميل البيانات من الـ repository
   final FetchFeaturedBooksUsecase fetchFeaturedBooksUsecase;
 
-  /// ✅ بنخزن كل الكتب اللي تم تحميلها (حتى نستخدمهم في pagination)
+  /// بنخزن كل الكتب المحمّلة
   List<BookEntity> books = [];
 
-  /// ✅ لتحديد هل في صفحات تانية نقدر نحمّلها ولا لأ
+  /// هل فيه بيانات إضافية نقدر نحملها؟ (pagination)
   bool hasMoreData = true;
 
-  /// 📦 دالة لجلب الكتب، سواء أول مرة أو مع التحميل التدريجي (pagination)
-  Future<void> getFeaturedBooks({int pageNumber = 0}) async {
-    // ✅ أول تحميل (الصفحة 0) = نعرض spinner عادي
-    if (pageNumber == 0) {
+  /// صفحة البيانات الحالية (بتبدأ من 0)
+  int currentPage = 0;
+
+  /// هل في عملية تحميل شغالة حاليًا؟ (عشان ما نبعّتش طلبين في نفس الوقت)
+  bool isLoading = false;
+
+  /// 📦 تحميل الكتب
+  Future<void> getFeaturedBooks() async {
+    // ✅ نحمي من إرسال ريكويست جديد أثناء تحميل أو لما مفيش صفحات تانية
+    if (isLoading || !hasMoreData) return;
+
+    isLoading = true;
+
+    // 👇 لو أول صفحة، نبعث حالة تحميل عادي
+    if (currentPage == 0) {
       emit(FeaturedBooksLoading());
     } else {
-      // ✅ تحميل صفحة جديدة (pagination) = نعرض spinner أسفل الكتب القديمة
+      // 👇 لو بنحمّل صفحة تانية (pagination)، نبعث حالة تحميل جزئي
       emit(FeaturedBooksPaginationLoading(oldBooks: books));
     }
 
-    // ⏳ نطلب البيانات من الـ usecase
-    final result = await fetchFeaturedBooksUsecase.call(pageNumber);
+    // ⏳ نطلب الكتب من الـ usecase
+    final result = await fetchFeaturedBooksUsecase.call(currentPage);
 
-    // 🧪 نتعامل مع النتيجة سواء فشل أو نجاح
     result.fold(
-      // ❌ لو فيه فشل
+      // ❌ لو فشل
       (failure) {
-        if (pageNumber == 0) {
-          // ❌ فشل في أول تحميل
+        isLoading = false;
+        if (currentPage == 0) {
           emit(FeaturedBooksFailure(errMessage: failure.errMessage));
         } else {
-          // ❌ فشل أثناء pagination
           emit(FeaturedBooksPaginationFailure(
             oldBooks: books,
             errMessage: failure.errMessage,
@@ -47,15 +56,17 @@ class FeaturedBooksCubit extends Cubit<FeaturedBooksState> {
         }
       },
 
-      // ✅ لو نجح تحميل الكتب
+      // ✅ لو نجح تحميل الصفحة
       (newBooks) {
-        // 🟡 لو عدد الكتب أقل من 10، نعتبر إنه مفيش صفحات تانية
-        if (newBooks.length < 10) hasMoreData = false;
-
-        // ✅ نضيف الكتب الجديدة على اللي قبلها
         books.addAll(newBooks);
 
-        // 🔄 نبعث الحالة الجديدة بالكتب المحدثة
+        // ✅ لو عدد الكتب الجديدة أقل من 10، يبقى مفيش صفحات تانية
+        if (newBooks.length < 10) hasMoreData = false;
+
+        currentPage++; // نزود رقم الصفحة
+        isLoading = false;
+
+        // ✅ نبعث الحالة النهائية بالكتب المجمعة
         emit(FeaturedBooksSuccess(books: books, hasMoreData: hasMoreData));
       },
     );

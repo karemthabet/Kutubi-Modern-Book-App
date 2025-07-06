@@ -9,7 +9,7 @@ final class NewsBooksLoading extends NewsBooksState {}
 final class NewsBooksSuccess extends NewsBooksState {
   final List<BookEntity> books;
   final bool hasMoreData;
-  NewsBooksSuccess({required this.hasMoreData, required this.books});
+  NewsBooksSuccess({required this.books, required this.hasMoreData});
 }
 
 final class NewsBooksFailure extends NewsBooksState {

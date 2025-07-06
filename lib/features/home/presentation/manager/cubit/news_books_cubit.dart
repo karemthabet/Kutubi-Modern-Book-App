@@ -6,38 +6,45 @@ part 'news_books_state.dart';
 
 class NewsBooksCubit extends Cubit<NewsBooksState> {
   NewsBooksCubit({required this.fetchNewsBooksUsecase})
-    : super(NewsBooksInitial());
+      : super(NewsBooksInitial());
+
   final FetchNewsBooksUsecase fetchNewsBooksUsecase;
+
   List<BookEntity> books = [];
   bool hasMoreData = true;
+  int currentPage = 0;
+  bool isLoading = false;
 
-  Future<void> getNewsBooks({int pageNumber = 0}) async {
-    if (pageNumber == 0) {
+  Future<void> getNewsBooks() async {
+    if (isLoading || !hasMoreData) return;
+    isLoading = true;
+
+    if (currentPage == 0) {
       emit(NewsBooksLoading());
     } else {
       emit(NewsBooksPaginationLoading(oldBooks: books));
     }
 
-    final result = await fetchNewsBooksUsecase.call(pageNumber);
+    final result = await fetchNewsBooksUsecase.call(currentPage);
 
     result.fold(
       (failure) {
-        if (pageNumber == 0) {
+        isLoading = false;
+        if (currentPage == 0) {
           emit(NewsBooksFailure(errMessage: failure.errMessage));
         } else {
-          emit(
-            NewsBooksPaginationFailure(
-              errMessage: failure.errMessage,
-              oldBooks: books,
-            ),
-          );
+          emit(NewsBooksPaginationFailure(
+            oldBooks: books,
+            errMessage: failure.errMessage,
+          ));
         }
       },
       (newBooks) {
-        if (newBooks.length < 10) {
-          hasMoreData = false;
-        }
         books.addAll(newBooks);
+
+        if (newBooks.length < 10) hasMoreData = false;
+        currentPage++;
+        isLoading = false;
 
         emit(NewsBooksSuccess(books: books, hasMoreData: hasMoreData));
       },
