@@ -12,19 +12,11 @@ import 'package:shimmer/shimmer.dart';
 class BookListViewItem extends StatelessWidget {
   const BookListViewItem({
     super.key,
-    required this.image,
-    required this.text,
-    required this.subText,
-    required this.rating,
-    required this.price,
+ 
     required this.book,
   });
 
-  final String image;
-  final String text;
-  final String subText;
-  final num rating;
-  final num price;
+ 
   final BookEntity book;
 
   @override
@@ -45,7 +37,7 @@ class BookListViewItem extends StatelessWidget {
               ),
               clipBehavior: Clip.antiAlias,
               child: CachedNetworkImage(
-                imageUrl: image,
+                imageUrl: book.image !,
                 fit: BoxFit.fill,
                 placeholder: (context, url) => Shimmer.fromColors(
                   baseColor: Colors.grey[300]!,
@@ -64,7 +56,7 @@ class BookListViewItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    text,
+                    book.title,
                     style: AppStyles.textStyle18.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -75,7 +67,7 @@ class BookListViewItem extends StatelessWidget {
 
                   // المؤلف
                   Text(
-                    subText,
+                    book.authorName!,
                     style: AppStyles.textStyle18.copyWith(
                       color: AppColors.greyColor,
                     ),
@@ -88,7 +80,7 @@ class BookListViewItem extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "\$$price",
+                        "\$${book.price!.toInt()}",
                         style: AppStyles.textStyle18.copyWith(
                           color: AppColors.primaryColor,
                           fontWeight: FontWeight.w600,
@@ -102,7 +94,7 @@ class BookListViewItem extends StatelessWidget {
                       ),
                       SizedBox(width: 4.w),
                       Text(
-                        rating.toStringAsFixed(1),
+                        book.rating!.toStringAsFixed(1),
                         style: AppStyles.textStyle18,
                       ),
                       SizedBox(width: 10.w),

@@ -85,11 +85,7 @@ class _NewsBooksSliverListWithPaginationState
               final book = books[index];
               return BookListViewItem(
                 book: book,
-                image: book.image!,
-                text: book.title,
-                subText: book.authorName!,
-                rating: book.rating!,
-                price: book.price!,
+              
               );
             } else {
               if (hasPaginationError) {

@@ -64,7 +64,7 @@ class _CustomListViewItemBlocBuilderState
         }
 
         // 🔄 تحميل أول مرة
-        if (state is FeaturedBooksInitial || state is FeaturedBooksLoading) {
+        if ( state is FeaturedBooksLoading) {
           return const CustomListViewItemShimmer();
         }
 

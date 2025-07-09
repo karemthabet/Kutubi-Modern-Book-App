@@ -35,7 +35,8 @@ class HomeRepoImpl extends HomeRepo {
       );
       log('🌐 Data fetched from REMOTE (featuredBooks)');
       return right(remoteBooks);
-    } catch (e) {
+    } 
+    catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       } else {
