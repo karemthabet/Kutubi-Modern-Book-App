@@ -21,10 +21,38 @@ This app ensures a seamless user experience with robust error handling and clean
 ---
 
 ## 📸 Screenshots
+## 📸 Screenshots
 
-| Splash Screen | Home | Book Details | Search |
-|---------------|------|---------------|--------|
-| ![](assets/screen_shots/splash.jpg) | ![](screenshots/home.png) | ![](screenshots/details.png) | ![](screenshots/search.png) |
+<div align="center">
+
+<table>
+  <tr>
+    <td><img src="assets/screen_shots/splash.jpg" width="220"/></td>
+    <td><img src="assets/screen_shots/programming_books.jpg" width="220"/></td>
+    <td><img src="assets/screen_shots/sports_books.jpg" width="220"/></td>
+  </tr>
+  <tr>
+    <td><b>Splash Screen</b></td>
+    <td><b>Programming Books</b></td>
+    <td><b>Sports Books</b></td>
+  </tr>
+</table>
+
+<br/>
+
+<table>
+  <tr>
+    <td><img src="assets/screen_shots/search.jpg" width="220"/></td>
+    <td><img src="assets/screen_shots/book_details.jpg" width="220"/></td>
+  </tr>
+  <tr>
+    <td><b>Search Screen</b></td>
+    <td><b>Book Details</b></td>
+  </tr>
+</table>
+
+</div>
+
 
 ---
 
