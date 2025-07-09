@@ -15,7 +15,20 @@ class SearchPageBody extends StatefulWidget {
 }
 
 class _SearchPageBodyState extends State<SearchPageBody> {
-  final TextEditingController searchController = TextEditingController();
+  late TextEditingController searchController;
+
+  @override
+  void initState() {
+    super.initState();
+    searchController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -33,19 +46,21 @@ class _SearchPageBodyState extends State<SearchPageBody> {
                 return Center(
                   child: Text(
                     state.errorMessage,
-                    style: AppStyles.textStyle18.copyWith(color: Colors.red),
+                    style: AppStyles.textStyle18.copyWith(color: Colors.grey),
                   ),
                 );
               }
               if (state is SearchSuccess) {
                 if (state.books.isEmpty) {
-                  return Center(
+                  return Expanded(
                     child: Text(
-                      "No results found",
+                      "🙁 No books found. Try another title.",
+                      textAlign: TextAlign.center,
                       style: AppStyles.textStyle18.copyWith(color: Colors.grey),
                     ),
                   );
                 }
+
                 return Expanded(
                   child: ListView.builder(
                     itemCount: state.books.length,
@@ -55,8 +70,8 @@ class _SearchPageBodyState extends State<SearchPageBody> {
                   ),
                 );
               }
-              return const CircularProgressIndicator(
-                color: AppColors.primaryColor,
+              return const Center(
+                child: CircularProgressIndicator(color: AppColors.primaryColor),
               );
             },
           ),

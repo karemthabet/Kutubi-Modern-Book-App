@@ -6,7 +6,6 @@ import 'package:bookly_app/features/home/presentation/widgets/custom_book_detail
 import 'package:bookly_app/features/home/presentation/widgets/custom_item_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BookPageDetailsBody extends StatelessWidget {
   const BookPageDetailsBody({super.key, required this.book});
@@ -41,29 +40,7 @@ class BookPageDetailsBody extends StatelessWidget {
           ),
           SizedBox(height: 12.h),
 
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                FontAwesomeIcons.solidStar,
-                color: AppColors.yellowColor,
-                size: 15,
-              ),
-              SizedBox(width: 9.w),
-              Text(book.rating.toString(), style: AppStyles.textStyle18),
-              SizedBox(width: 13.w),
-              Text(
-                "(2025)",
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: AppStyles.textStyle18.copyWith(
-                  color: AppColors.greyColor,
-                  fontSize: 15,
-                ),
-              ),
-            ],
-          ),
-
+       
           SizedBox(height: 20.h),
 
           Row(

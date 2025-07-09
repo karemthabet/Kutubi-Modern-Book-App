@@ -25,9 +25,13 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
 
   List<BookEntity> getBooksList(Map<String, dynamic> data) {
     List<BookEntity> books = [];
-    for (var item in data['items']) {
-      books.add(BookModel.fromJson(item));
+
+    if (data['items'] != null && data['items'] is List) {
+      for (var item in data['items']) {
+        books.add(BookModel.fromJson(item));
+      }
     }
+
     return books;
   }
 }

@@ -5,7 +5,6 @@ import 'package:bookly_app/features/home/domain/entities/book_entity.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -77,35 +76,7 @@ class BookListViewItem extends StatelessWidget {
                   SizedBox(height: 8.h),
 
                   // السعر والتقييم والسنة
-                  Row(
-                    children: [
-                      Text(
-                        "\$${book.price!.toInt()}",
-                        style: AppStyles.textStyle18.copyWith(
-                          color: AppColors.primaryColor,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const Spacer(),
-                      const Icon(
-                        FontAwesomeIcons.solidStar,
-                        size: 14,
-                        color: AppColors.yellowColor,
-                      ),
-                      SizedBox(width: 4.w),
-                      Text(
-                        book.rating!.toStringAsFixed(1),
-                        style: AppStyles.textStyle18,
-                      ),
-                      SizedBox(width: 10.w),
-                      Text(
-                        "2025",
-                        style: AppStyles.textStyle18.copyWith(
-                          color: AppColors.greyColor,
-                        ),
-                      ),
-                    ],
-                  ),
+                 
                 ],
               ),
             ),

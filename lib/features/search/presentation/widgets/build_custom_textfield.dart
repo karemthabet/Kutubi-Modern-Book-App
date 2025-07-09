@@ -17,6 +17,11 @@ class BuildCustomTextFeild extends StatelessWidget {
         controller: searchController,
         style: const TextStyle(color: AppColors.whiteColor),
         cursorColor: AppColors.yellowColor,
+        onChanged: (value) {
+          if (value.trim().isNotEmpty) {
+            context.read<SearchCubit>().searchBooks(value.trim());
+          }
+        },
         decoration: InputDecoration(
           focusedBorder: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -29,7 +34,14 @@ class BuildCustomTextFeild extends StatelessWidget {
           hintText: "Search",
           suffixIcon: InkWell(
             onTap: () {
-              context.read<SearchCubit>().searchBooks(searchController.text);
+              final text = searchController.text.trim();
+              if (text.isEmpty) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text("Please enter a book name")),
+                );
+              } else {
+                context.read<SearchCubit>().searchBooks(text);
+              }
             },
             child: const Icon(
               FontAwesomeIcons.magnifyingGlass,
