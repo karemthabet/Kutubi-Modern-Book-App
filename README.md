@@ -21,7 +21,6 @@ This app ensures a seamless user experience with robust error handling and clean
 ---
 
 ## 📸 Screenshots
-## 📸 Screenshots
 
 <div align="center">
 
