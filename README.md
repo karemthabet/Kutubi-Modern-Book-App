@@ -1,22 +1,22 @@
 
-# 📚 Bookly App
+# 📚 Kutubi – Modern Book App
 
-A modern and powerful Flutter application for discovering, viewing, and saving books.  
-**Built with clean architecture**, real-time API fetching, smooth pagination, local storage via Hive, and a beautiful animated splash screen.  
-This app ensures a seamless user experience with robust error handling and clean code structure.
+**Kutubi** is a powerful Flutter application for discovering, viewing, and saving books.  
+Built with clean architecture, real-time API integration, smooth pagination, local storage via Hive, and a beautifully animated splash screen.  
+This app ensures a seamless user experience with elegant UI and robust error handling.
 
 ---
 
 ## 🚀 Features
 
-✅ Splash screen with animation  
+✅ Animated splash screen  
 ✅ Fetch books from API with pagination  
-✅ Save favorite books using **Hive local storage**  
-✅ Search books by title  
-✅ Detailed book info screen  
-✅ Elegant and responsive UI  
-✅ Full error handling for all failure cases  
-✅ Based on **Clean Architecture principles**
+✅ Save favorite books locally with **Hive**  
+✅ Search for books by title  
+✅ Detailed screen for each book  
+✅ Responsive and minimal UI  
+✅ Handles all failure scenarios gracefully  
+✅ Structured using **Clean Architecture**
 
 ---
 
@@ -52,7 +52,6 @@ This app ensures a seamless user experience with robust error handling and clean
 
 </div>
 
-
 ---
 
 ## 🧱 Project Structure
@@ -84,8 +83,8 @@ Organized using **Clean Architecture**:
 - **Dio** – for API integration
 - **Cubit (flutter_bloc)** – for state management
 - **GetIt** – for dependency injection
-- **Custom error handling classes**
 - **ScreenUtil** – for responsive design
+- **Custom error handling utilities**
 
 ---
 
@@ -94,8 +93,8 @@ Organized using **Clean Architecture**:
 1. **Clone the repo**
 
 ```bash
-git clone https://github.com/yourusername/bookly_app.git
-cd bookly_app
+git clone https://github.com/yourusername/kutubi_app.git
+cd kutubi_app
 ````
 
 2. **Install dependencies**
@@ -111,3 +110,4 @@ flutter run
 ```
 
 ---
+
