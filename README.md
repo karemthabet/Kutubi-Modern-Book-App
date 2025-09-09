@@ -1,4 +1,3 @@
-
 # 📚 Kutubi – Modern Book App
 
 **Kutubi** is a powerful Flutter application for discovering, viewing, and saving books.  
@@ -26,29 +25,16 @@ This app ensures a seamless user experience with elegant UI and robust error han
 
 <table>
   <tr>
-    <td><img src="assets/screen_shots/splash.jpg" width="220"/></td>
-    <td><img src="assets/screen_shots/programming_books.jpg" width="220"/></td>
-    <td><img src="assets/screen_shots/sports_books.jpg" width="220"/></td>
+    <td><img src="assets/screen_shots/shots_splash.png" width="600"/></td>
+    <td><img src="assets/screen_shots/shots 2.png" width="600"/></td>
   </tr>
   <tr>
     <td><b>Splash Screen</b></td>
-    <td><b>Programming Books</b></td>
-    <td><b>Sports Books</b></td>
+    <td><b>Home – Book Categories</b></td>
   </tr>
 </table>
 
 <br/>
-
-<table>
-  <tr>
-    <td><img src="assets/screen_shots/search.jpg" width="220"/></td>
-    <td><img src="assets/screen_shots/book_details.jpg" width="220"/></td>
-  </tr>
-  <tr>
-    <td><b>Search Screen</b></td>
-    <td><b>Book Details</b></td>
-  </tr>
-</table>
 
 </div>
 
@@ -109,5 +95,4 @@ flutter pub get
 flutter run
 ```
 
----
-
+```
