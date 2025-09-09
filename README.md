@@ -25,8 +25,8 @@ This app ensures a seamless user experience with elegant UI and robust error han
 
 <table>
   <tr>
-    <td><img src="assets/screen_shots/shots_splash.png" width="600"/></td>
-    <td><img src="assets/screen_shots/shots 2.png" width="600"/></td>
+    <td><img src="assets/images/shots_splash.png" width="600"/></td>
+    <td><img src="assets/images/shots 2.png" width="600"/></td>
   </tr>
   <tr>
     <td><b>Splash Screen</b></td>
